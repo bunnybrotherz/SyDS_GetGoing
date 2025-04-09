@@ -269,9 +269,9 @@
           <h3>Simulation Area</h3>
           <span class="help-icon">ⓘ</span>
           <div class="help-tooltip">
-            Red circles show high urgency victims (youth & adults),
-            Orange circles show medium urgency (disabled),
-            Green circles show low urgency (elderly).
+            Red circles show high priority victims (youth & adults),
+            Orange circles show medium priority (disabled),
+            Green circles show low priority (elderly).
             Lines connect helpers to their assigned victims.
           </div>
         </div>
@@ -280,15 +280,11 @@
         <div id="urgency-legend">
           <div class="legend-item">
             <div class="legend-color" style="background-color: rgba(255, 0, 0, 0.8);"></div>
-            <span>High Urgency (Youth & Adults)</span>
+            <span>High priority (Youth & Adults)</span>
           </div>
           <div class="legend-item">
             <div class="legend-color" style="background-color: rgba(255, 165, 0, 0.8);"></div>
-            <span>Medium Urgency (Disabled)</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-color" style="background-color: rgba(0, 128, 0, 0.8);"></div>
-            <span>Low Urgency (Elderly)</span>
+            <span>Medium priority (Elderly & Disabled)</span>
           </div>
         </div>
       </div>
@@ -307,7 +303,7 @@
         </div>
 
         <button id="start-button" class="btn btn-primary">Start Simulation</button>
-        <button id="test-button" class="btn btn-secondary">Test with 20 Agents</button>
+        <button id="test-button" class="btn btn-secondary">Test with 30 Agents</button>
 
         <div id="counter-container">
           <div class="header">Rescue Statistics</div>
@@ -323,7 +319,7 @@
     </div>
 
     <div class="stats-panel">
-      <h3>Urgency Performance</h3>
+      <h3>Priority Performance</h3>
       <div id="urgency-stats"></div>
     </div>
   </div>
