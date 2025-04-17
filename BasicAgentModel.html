@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emergency Evacuation Simulation lol</title>
+  <title>Emergency Evacuation Simulation</title>
   <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -262,6 +262,7 @@
 <body>
   <div class="container">
     <h1>Emergency Evacuation Simulation</h1>
+    <h3 id="priority-header"></h3>
 
     <div class="dashboard">
       <div class="simulation-area">
@@ -269,9 +270,8 @@
           <h3>Simulation Area</h3>
           <span class="help-icon">ⓘ</span>
           <div class="help-tooltip">
-            Red circles show high urgency victims (youth & adults),
-            Orange circles show medium urgency (disabled),
-            Green circles show low urgency (elderly).
+            Red circles show high priority victims (youth & adults),
+            Green circles show low priority (elderly & PWDs).
             Lines connect helpers to their assigned victims.
           </div>
         </div>
@@ -280,11 +280,11 @@
         <div id="urgency-legend">
           <div class="legend-item">
             <div class="legend-color" style="background-color: rgba(255, 0, 0, 0.8);"></div>
-            <span>High Urgency (Elderly & PWD)</span>
+            <span>High priority (Youth & Adults)</span>
           </div>
           <div class="legend-item">
-            <div class="legend-color" style="background-color: rgba(0, 128, 0, 0.8);"></div>
-            <span>Low Urgency (Youth & Adults)</span>
+            <div class="legend-color" style="background-color: rgba(123, 255, 0, 0.849);"></div>
+            <span>Low priority (Elderly & PWD)</span>
           </div>
         </div>
       </div>
@@ -305,24 +305,25 @@
         <button id="start-button" class="btn btn-primary">Start Simulation</button>
 
         <div id="counter-container">
-          <div class="header">Rescue Statistics</div>
+          <div class="header">Evacuation Statistics</div>
           <div class="stat-box high-urgency" id="youth-count">Youth Saved: 0</div>
           <div class="stat-box high-urgency" id="adult-count">Adults Saved: 0</div>
-          <div class="stat-box medium-urgency" id="disabled-count">Disabled Saved: 0</div>
+          <div class="stat-box medium-urgency" id="PWD-count">PWD Saved: 0</div>
           <div class="stat-box low-urgency" id="elderly-count">Elderly Saved: 0</div>
-          <div class="stat-box helper" id="packing-count">Packing Helpers: 0</div>
-          <div class="stat-box helper" id="first-aider-count">First Aiders: 0</div>
+          <!-- Changed from two separate helper types to a single helper type -->
+          <div class="stat-box helper" id="helper-count">Helpers: 0</div>
           <div class="stat-box timer" id="timer-count">Time: 30s</div>
         </div>
       </div>
     </div>
 
     <div class="stats-panel">
-      <h3>Urgency Performance</h3>
+      <h3>Priority Performance</h3>
       <div id="urgency-stats"></div>
     </div>
   </div>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="lib/BasicAgentModel.js"></script>
-  <script>
+</body>
+</html>
