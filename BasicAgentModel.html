@@ -442,7 +442,11 @@
       // Load initial script
       scriptElement = document.createElement('script');
       scriptElement.src = `lib/scenario1.js`;
-      document.body.appendChild(scriptElement);
+      scriptElement.onload = function() {
+        if (typeof initScenario === 'function') {
+          initScenario();
+        }
+      };      document.body.appendChild(scriptElement);
     };
   </script>
 </body>
