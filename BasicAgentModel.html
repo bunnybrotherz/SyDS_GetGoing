@@ -234,29 +234,6 @@
         margin-bottom: 15px;
     }
 
-    .help-icon {
-        color: #6c757d;
-        cursor: pointer;
-        font-size: 1.2em;
-    }
-
-    .help-tooltip {
-        display: none;
-        position: absolute;
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
-        border-radius: 5px;
-        z-index: 100;
-        width: 250px;
-        top: 50px;
-        right: 20px;
-    }
-
-    .help-icon:hover + .help-tooltip {
-        display: block;
-    }
-
     /* New styles for scenario selector */
     .scenario-selector {
         background-color: white;
@@ -312,10 +289,6 @@
       <div class="simulation-area">
         <div class="simulation-title">
           <h3>Simulation Area</h3>
-          <span class="help-icon">ⓘ</span>
-          <div class="help-tooltip" id="simulation-tooltip">
-            Victims move toward the shelter (goal).
-          </div>
         </div>
         <svg id="surface"></svg>
 
@@ -342,7 +315,7 @@
           <div class="header">Evacuation Statistics</div>
           <div class="stat-box high-urgency" id="youth-count">Youth Saved: 0</div>
           <div class="stat-box high-urgency" id="adult-count">Adults Saved: 0</div>
-          <div class="stat-box medium-urgency" id="disabled-count">PWD Saved: 0</div>
+          <div class="stat-box medium-urgency" id="PWD-count">PWD Saved: 0</div>
           <div class="stat-box low-urgency" id="elderly-count">Elderly Saved: 0</div>
           <!-- Helper count only shown for non-baseline scenarios -->
           <div class="stat-box helper" id="helper-count" style="display: none;">Helpers: 0</div>
@@ -374,20 +347,13 @@
         "Prioritizing First Aid: Helpers assist victims needing medical attention first.",
         "Proximity Based: Helpers assist the nearest victims regardless of type."
       ];
-      
-      const tooltips = [
-        "Victims move toward the shelter (goal).",
-        "Red circles show high priority (elderly & PWD), green circles show lower priority (youth & adults).",
-        "Red circles show high priority (youth & adults), green circles show lower priority (elderly & PWD).",
-        "Red circles show victims needing first aid, blue circles show victims needing packing help.",
-        "Blue circles show victims needing packing help, red circles show victims needing first aid."
-      ];
-      
+
+      // Show/hide stats panel based on scenario
+      document.querySelector('.stats-panel').style.display = 
+        scenarioId === 1 ? 'none' : 'block';
+
       // Update description
       document.getElementById("scenario-description").textContent = descriptions[scenarioId - 1];
-      
-      // Update tooltip
-      document.getElementById("simulation-tooltip").textContent = tooltips[scenarioId - 1];
       
       // Show/hide helper count based on scenario
       document.getElementById("helper-count").style.display = scenarioId === 1 ? "none" : "flex";
@@ -406,6 +372,8 @@
     
     // Change scenario function
     function changeScenario() {
+      console.log("changeScenario called");
+      
       // Get the selected scenario
       const scenarioSelect = document.getElementById("scenario-select");
       const newScenario = parseInt(scenarioSelect.value);
@@ -413,40 +381,88 @@
       // Skip if same scenario
       if (newScenario === currentScenario) return;
       
+      console.log(`Switching from scenario ${currentScenario} to scenario ${newScenario}`);
+      
       // Update current scenario
       currentScenario = newScenario;
       
       // Clean up any running simulation
-      if (typeof cleanupTimers === 'function') {
-        cleanupTimers();
+      if (typeof window.cleanupTimers === 'function') {
+        window.cleanupTimers();
       }
+      
+      // Reset counters and UI
+      document.getElementById('youth-count').textContent = `Youth Saved: 0`;
+      document.getElementById('adult-count').textContent = `Adults Saved: 0`;
+      document.getElementById('elderly-count').textContent = `Elderly Saved: 0`;
+      document.getElementById('PWD-count').textContent = `PWD Saved: 0`;
+      document.getElementById('timer-count').textContent = `Time: 30s`;
+      document.getElementById('urgency-stats').innerHTML = '';
       
       // Remove existing script if any
       if (scriptElement) {
         document.body.removeChild(scriptElement);
       }
       
+      // Forcefully reset global variables
+      window.victims = undefined;
+      window.agents = undefined;
+      window.surface = undefined;
+      window.savedCount = undefined;
+      window.perishedCount = undefined;
+      window.totalAgentsByType = undefined;
+      window.initScenario = undefined;
+      window.cleanupTimers = undefined;
+      window.victimNeedType = undefined;
+      window.updateLegend = undefined;
+      window.displayPriorityGroups = undefined;
+      window.generateUrgencyLegend = undefined;
+      
+      // Reset the surface
+      const surfaceElement = document.getElementById("surface");
+      surfaceElement.innerHTML = '';
+      document.getElementById("urgency-legend").innerHTML = '';
+      
       // Update UI for the new scenario
       updateScenarioUI(currentScenario);
       
-      // Load the appropriate script
+      // Load the appropriate script with cache busting to prevent browser caching
       scriptElement = document.createElement('script');
-      scriptElement.src = `lib/scenario${currentScenario}.js`;
+      scriptElement.src = `lib/scenario${currentScenario}.js?t=${Date.now()}`;
+      scriptElement.onload = function() {
+        console.log(`Scenario ${currentScenario} script loaded`);
+        
+        // Give a small delay to ensure DOM is ready
+        setTimeout(function() {
+          if (typeof window.initScenario === 'function') {
+            console.log(`Initializing scenario ${currentScenario}`);
+            window.initScenario();
+          } else {
+            console.error(`initScenario function not found for scenario ${currentScenario}`);
+          }
+        }, 100);
+      };
       document.body.appendChild(scriptElement);
     }
     
     // Initialize with the first scenario
     window.onload = function() {
+      console.log("Page loaded, initializing first scenario");
       updateScenarioUI(currentScenario);
       
       // Load initial script
       scriptElement = document.createElement('script');
-      scriptElement.src = `lib/scenario1.js`;
+      scriptElement.src = `lib/scenario1.js?t=${Date.now()}`;
       scriptElement.onload = function() {
-        if (typeof initScenario === 'function') {
-          initScenario();
+        console.log("Initial scenario script loaded");
+        if (typeof window.initScenario === 'function') {
+          console.log("Calling initScenario for initial scenario");
+          window.initScenario();
+        } else {
+          console.error("initScenario function not found in initial script!");
         }
-      };      document.body.appendChild(scriptElement);
+      };
+      document.body.appendChild(scriptElement);
     };
   </script>
 </body>
