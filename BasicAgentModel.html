@@ -372,94 +372,42 @@
     
     // Change scenario function
     function changeScenario() {
-      console.log("changeScenario called");
-      
-      // Get the selected scenario
       const scenarioSelect = document.getElementById("scenario-select");
       const newScenario = parseInt(scenarioSelect.value);
       
       // Skip if same scenario
       if (newScenario === currentScenario) return;
       
-      console.log(`Switching from scenario ${currentScenario} to scenario ${newScenario}`);
+      // Use URL parameter to reload page with new scenario
+      window.location.href = `?scenario=${newScenario}`;
+    }
+
+    // Single, unified window.onload function
+    window.onload = function() {
+      console.log("Page loaded, initializing scenario");
       
-      // Update current scenario
-      currentScenario = newScenario;
+      // Check if there's a scenario parameter in the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const scenarioParam = urlParams.get('scenario');
       
-      // Clean up any running simulation
-      if (typeof window.cleanupTimers === 'function') {
-        window.cleanupTimers();
+      if (scenarioParam) {
+        currentScenario = parseInt(scenarioParam);
+        document.getElementById('scenario-select').value = currentScenario;
       }
       
-      // Reset counters and UI
-      document.getElementById('youth-count').textContent = `Youth Saved: 0`;
-      document.getElementById('adult-count').textContent = `Adults Saved: 0`;
-      document.getElementById('elderly-count').textContent = `Elderly Saved: 0`;
-      document.getElementById('PWD-count').textContent = `PWD Saved: 0`;
-      document.getElementById('timer-count').textContent = `Time: 30s`;
-      document.getElementById('urgency-stats').innerHTML = '';
-      
-      // Remove existing script if any
-      if (scriptElement) {
-        document.body.removeChild(scriptElement);
-      }
-      
-      // Forcefully reset global variables
-      window.victims = undefined;
-      window.agents = undefined;
-      window.surface = undefined;
-      window.savedCount = undefined;
-      window.perishedCount = undefined;
-      window.totalAgentsByType = undefined;
-      window.initScenario = undefined;
-      window.cleanupTimers = undefined;
-      window.victimNeedType = undefined;
-      window.updateLegend = undefined;
-      window.displayPriorityGroups = undefined;
-      window.generateUrgencyLegend = undefined;
-      
-      // Reset the surface
-      const surfaceElement = document.getElementById("surface");
-      surfaceElement.innerHTML = '';
-      document.getElementById("urgency-legend").innerHTML = '';
-      
-      // Update UI for the new scenario
+      // Update UI for the scenario
       updateScenarioUI(currentScenario);
       
-      // Load the appropriate script with cache busting to prevent browser caching
+      // Load the appropriate scenario script
       scriptElement = document.createElement('script');
       scriptElement.src = `lib/scenario${currentScenario}.js?t=${Date.now()}`;
       scriptElement.onload = function() {
         console.log(`Scenario ${currentScenario} script loaded`);
-        
-        // Give a small delay to ensure DOM is ready
-        setTimeout(function() {
-          if (typeof window.initScenario === 'function') {
-            console.log(`Initializing scenario ${currentScenario}`);
-            window.initScenario();
-          } else {
-            console.error(`initScenario function not found for scenario ${currentScenario}`);
-          }
-        }, 100);
-      };
-      document.body.appendChild(scriptElement);
-    }
-    
-    // Initialize with the first scenario
-    window.onload = function() {
-      console.log("Page loaded, initializing first scenario");
-      updateScenarioUI(currentScenario);
-      
-      // Load initial script
-      scriptElement = document.createElement('script');
-      scriptElement.src = `lib/scenario1.js?t=${Date.now()}`;
-      scriptElement.onload = function() {
-        console.log("Initial scenario script loaded");
         if (typeof window.initScenario === 'function') {
-          console.log("Calling initScenario for initial scenario");
+          console.log(`Initializing scenario ${currentScenario}`);
           window.initScenario();
         } else {
-          console.error("initScenario function not found in initial script!");
+          console.error(`initScenario function not found for scenario ${currentScenario}!`);
         }
       };
       document.body.appendChild(scriptElement);
