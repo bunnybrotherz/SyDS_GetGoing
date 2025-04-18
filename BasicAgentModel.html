@@ -11,170 +11,170 @@
         padding: 0;
         background-color: #f5f7fa;
         color: #333;
-      }
+    }
 
-      .container {
+    .container {
         display: flex;
         flex-direction: column;
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
-      }
+    }
 
-      h1 {
+    h1 {
         color: #2c3e50;
         text-align: center;
         margin-bottom: 20px;
-      }
+    }
 
-      .dashboard {
+    .dashboard {
         display: grid;
         grid-template-columns: 1fr 300px;
         gap: 20px;
         margin-bottom: 20px;
-      }
+    }
 
-      .simulation-area {
+    .simulation-area {
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 15px;
         position: relative;
-      }
+    }
 
-      .controls {
+    .controls {
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 20px;
-      }
+    }
 
-      .stats-panel {
+    .stats-panel {
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin-bottom: 20px;
-      }
+    }
 
-      #surface {
+    #surface {
         width: 100%;
         height: 500px;
         border-radius: 8px;
         background-color: #f0f5ff;
-      }
+    }
 
-      #counter-container {
+    #counter-container {
         margin-top: 20px;
-      }
+    }
 
-      .stat-box {
+    .stat-box {
         display: flex;
         justify-content: space-between;
         padding: 8px 15px;
         margin-bottom: 10px;
         border-radius: 5px;
         font-weight: 500;
-      }
+    }
 
-      .high-urgency {
+    .high-urgency {
         background-color: rgba(255, 99, 132, 0.2);
         border-left: 4px solid #ff6384;
-      }
+    }
 
-      .medium-urgency {
+    .medium-urgency {
         background-color: rgba(255, 159, 64, 0.2);
         border-left: 4px solid #ff9f40;
-      }
+    }
 
-      .low-urgency {
+    .low-urgency {
         background-color: rgba(75, 192, 192, 0.2);
         border-left: 4px solid #4bc0c0;
-      }
+    }
 
-      .helper {
+    .helper {
         background-color: rgba(54, 162, 235, 0.2);
         border-left: 4px solid #36a2eb;
-      }
+    }
 
-      .timer {
+    .timer {
         background-color: rgba(153, 102, 255, 0.2);
         border-left: 4px solid #9966ff;
         font-size: 1.2em;
-      }
+    }
 
-      #urgency-stats {
+    #urgency-stats {
         margin-top: 15px;
         padding: 15px;
         background-color: #f8f9fa;
         border-radius: 5px;
-      }
+    }
 
-      .urgency-progress {
+    .urgency-progress {
         margin-top: 5px;
         margin-bottom: 10px;
-      }
+    }
 
-      .progress-bar {
+    .progress-bar {
         height: 10px;
         background-color: #e9ecef;
         border-radius: 5px;
         margin-top: 5px;
         overflow: hidden;
-      }
+    }
 
-      .progress-fill {
+    .progress-fill {
         height: 100%;
         border-radius: 5px;
-      }
+    }
 
-      .high-fill {
+    .high-fill {
         background-color: #ff6384;
-      }
+    }
 
-      .medium-fill {
+    .medium-fill {
         background-color: #ff9f40;
-      }
+    }
 
-      .low-fill {
+    .low-fill {
         background-color: #4bc0c0;
-      }
+    }
 
-      #urgency-legend {
+    #urgency-legend {
         display: flex;
         justify-content: center;
         margin: 15px 0;
         flex-wrap: wrap;
         gap: 10px;
-      }
+    }
 
-      .legend-item {
+    .legend-item {
         display: flex;
         align-items: center;
         margin-right: 15px;
-      }
+    }
 
-      .legend-color {
+    .legend-color {
         width: 12px;
         height: 12px;
         border-radius: 50%;
         margin-right: 5px;
-      }
+    }
 
-      .speed-control {
+    .speed-control {
         margin: 20px 0;
-      }
+    }
 
-      #slider1 {
+    #slider1 {
         width: 100%;
         -webkit-appearance: none;
         height: 5px;
         border-radius: 5px;
         background: #d3d3d3;
         outline: none;
-      }
+    }
 
-      #slider1::-webkit-slider-thumb {
+    #slider1::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
         width: 20px;
@@ -182,17 +182,17 @@
         border-radius: 50%;
         background: #4CAF50;
         cursor: pointer;
-      }
+    }
 
-      .speed-labels {
+    .speed-labels {
         display: flex;
         justify-content: space-between;
         margin-top: 5px;
         color: #666;
         font-size: 0.8em;
-      }
+    }
 
-      .btn {
+    .btn {
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
@@ -201,46 +201,46 @@
         transition: all 0.3s ease;
         margin: 5px;
         width: 100%;
-      }
+    }
 
-      .btn-primary {
+    .btn-primary {
         background-color: #4CAF50;
         color: white;
-      }
+    }
 
-      .btn-secondary {
+    .btn-secondary {
         background-color: #2196F3;
         color: white;
-      }
+    }
 
-      .btn-primary:hover {
+    .btn-primary:hover {
         background-color: #3e8e41;
-      }
+    }
 
-      .btn-secondary:hover {
+    .btn-secondary:hover {
         background-color: #0b7dda;
-      }
+    }
 
-      .header {
+    .header {
         margin-bottom: 5px;
         color: #2c3e50;
         font-weight: bold;
-      }
+    }
 
-      .simulation-title {
+    .simulation-title {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 15px;
-      }
+    }
 
-      .help-icon {
+    .help-icon {
         color: #6c757d;
         cursor: pointer;
         font-size: 1.2em;
-      }
+    }
 
-      .help-tooltip {
+    .help-tooltip {
         display: none;
         position: absolute;
         background-color: #333;
@@ -251,43 +251,76 @@
         width: 250px;
         top: 50px;
         right: 20px;
-      }
+    }
 
-      .help-icon:hover + .help-tooltip {
+    .help-icon:hover + .help-tooltip {
         display: block;
-      }
+    }
+
+    /* New styles for scenario selector */
+    .scenario-selector {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .scenario-selector select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: white;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .scenario-description {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        font-style: italic;
+        color: #666;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
     <h1>Emergency Evacuation Simulation</h1>
-    <h3>Proximity-based helper-victim matching</h3>
+    
+    <!-- New Scenario Selector -->
+    <div class="scenario-selector">
+      <h3>Select Scenario</h3>
+      <select id="scenario-select" onchange="changeScenario()">
+        <option value="1">Baseline (No helpers)</option>
+        <option value="2">Prioritize Elderly and PWD</option>
+        <option value="3">Prioritize Youth and Adult</option>
+        <option value="4">Prioritize First Aid Victims</option>
+        <option value="5">Proximity Based</option>
+      </select>
+      <div class="scenario-description" id="scenario-description">
+        Baseline scenario: No helpers, all victims go to goal directly.
+      </div>
+    </div>
+
+    <!-- Dynamic subtitle that changes based on scenario -->
+    <h3 id="priority-header"></h3>
 
     <div class="dashboard">
       <div class="simulation-area">
         <div class="simulation-title">
           <h3>Simulation Area</h3>
           <span class="help-icon">ⓘ</span>
-          <div class="help-tooltip">
-            Blue circles show victims needing packing help,
-            Red circles show victims needing first aid.
-            Lines connect helpers to their assigned victims.
+          <div class="help-tooltip" id="simulation-tooltip">
+            Victims move toward the shelter (goal).
           </div>
         </div>
         <svg id="surface"></svg>
 
-
-        <div id="urgency-legend">
-          <div class="legend-item">
-            <div class="legend-color" style="background-color: rgba(54, 162, 235, 0.9);"></div>
-            <span>Victims needing packing help</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-color" style="background-color: rgba(255, 99, 132, 0.9);"></div>
-            <span>Victims needing first aid</span>
-          </div>
-        </div>
+        <!-- Legend will be populated dynamically based on scenario -->
+        <div id="urgency-legend"></div>
       </div>
 
       <div class="controls">
@@ -311,6 +344,8 @@
           <div class="stat-box high-urgency" id="adult-count">Adults Saved: 0</div>
           <div class="stat-box medium-urgency" id="disabled-count">PWD Saved: 0</div>
           <div class="stat-box low-urgency" id="elderly-count">Elderly Saved: 0</div>
+          <!-- Helper count only shown for non-baseline scenarios -->
+          <div class="stat-box helper" id="helper-count" style="display: none;">Helpers: 0</div>
           <div class="stat-box timer" id="timer-count">Time: 30s</div>
         </div>
       </div>
@@ -323,6 +358,92 @@
   </div>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="lib/BasicAgentModel.js"></script>
+  
+  <!-- We'll load the appropriate JS file based on the selected scenario -->
+  <script>
+    // Current scenario
+    let currentScenario = 1;
+    let scriptElement = null;
+    
+    // Update UI based on selected scenario
+    function updateScenarioUI(scenarioId) {
+      const descriptions = [
+        "Baseline scenario: No helpers, all victims go to goal directly.",
+        "Prioritizing Elderly and PWD: Helpers focus on assisting vulnerable populations first.",
+        "Prioritizing Youth and Adult: Helpers focus on assisting younger individuals first.",
+        "Prioritizing First Aid: Helpers assist victims needing medical attention first.",
+        "Proximity Based: Helpers assist the nearest victims regardless of type."
+      ];
+      
+      const tooltips = [
+        "Victims move toward the shelter (goal).",
+        "Red circles show high priority (elderly & PWD), green circles show lower priority (youth & adults).",
+        "Red circles show high priority (youth & adults), green circles show lower priority (elderly & PWD).",
+        "Red circles show victims needing first aid, blue circles show victims needing packing help.",
+        "Blue circles show victims needing packing help, red circles show victims needing first aid."
+      ];
+      
+      // Update description
+      document.getElementById("scenario-description").textContent = descriptions[scenarioId - 1];
+      
+      // Update tooltip
+      document.getElementById("simulation-tooltip").textContent = tooltips[scenarioId - 1];
+      
+      // Show/hide helper count based on scenario
+      document.getElementById("helper-count").style.display = scenarioId === 1 ? "none" : "flex";
+      
+      // Clear priority header for baseline, update for others dynamically
+      const priorityHeader = document.getElementById("priority-header");
+      if (scenarioId === 1) {
+        priorityHeader.textContent = "Baseline Scenario";
+      } else if (scenarioId === 5) {
+        priorityHeader.textContent = "Proximity-based helper-victim matching";
+      } else if (scenarioId === 4) {
+        priorityHeader.textContent = "Prioritising First-aid Victims";
+      }
+      // Scenarios 2 and 3 set this dynamically in the JS
+    }
+    
+    // Change scenario function
+    function changeScenario() {
+      // Get the selected scenario
+      const scenarioSelect = document.getElementById("scenario-select");
+      const newScenario = parseInt(scenarioSelect.value);
+      
+      // Skip if same scenario
+      if (newScenario === currentScenario) return;
+      
+      // Update current scenario
+      currentScenario = newScenario;
+      
+      // Clean up any running simulation
+      if (typeof cleanupTimers === 'function') {
+        cleanupTimers();
+      }
+      
+      // Remove existing script if any
+      if (scriptElement) {
+        document.body.removeChild(scriptElement);
+      }
+      
+      // Update UI for the new scenario
+      updateScenarioUI(currentScenario);
+      
+      // Load the appropriate script
+      scriptElement = document.createElement('script');
+      scriptElement.src = `lib/scenario${currentScenario}.js`;
+      document.body.appendChild(scriptElement);
+    }
+    
+    // Initialize with the first scenario
+    window.onload = function() {
+      updateScenarioUI(currentScenario);
+      
+      // Load initial script
+      scriptElement = document.createElement('script');
+      scriptElement.src = `lib/scenario1.js`;
+      document.body.appendChild(scriptElement);
+    };
+  </script>
 </body>
 </html>
